@@ -1,0 +1,18 @@
+<div ng-include="'partials/navbar'"></div>
+<div class="container">  
+	<div class="row search">
+		<div class="col-md-12">
+			<div class="input-group">
+				<input type="text" ng-model="searchTerm" placeholder="Search for song or artist" class="form-control">
+				<span class="input-group-btn">
+					<button class="btn btn-success" ng-click="search()">Go</button>
+				</span>
+			</div>
+	    	<ul ng-repeat="results in result">
+		    	<li>{{result.name}}</li>
+		    </ul>
+		</div>
+	</div>
+</div>
+
+<div ng-include="'partials/footer'"></div>

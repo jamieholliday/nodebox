@@ -1,18 +1,41 @@
 <div ng-include="'partials/navbar'"></div>
-<div class="container">  
+<div class="container main-container">  
 	<div class="row search">
 		<div class="col-md-12">
-			<div class="input-group">
+			<div class="input-group search-box">
 				<input type="text" ng-model="searchTerm" placeholder="Search for song or artist" class="form-control">
 				<span class="input-group-btn">
-					<button class="btn btn-success" ng-click="search()">Go</button>
+					<button class="btn btn-warning" ng-click="search()">Go</button>
 				</span>
 			</div>
-	    	<ul ng-repeat="results in result">
-		    	<li>{{result.name}}</li>
-		    </ul>
+			<div ng-if="tracks" class="tracks">
+				<h2><span class="glyphicon glyphicon-music"></span> Tracks</h2>
+		    	<ul>
+			    	<li ng-repeat="track in tracks">
+				    	<div class="track-container pull-left">
+					    	<h3>{{track.title[0]}} - {{track.artist[0]}}</h3>
+					    	<p>{{track.album[0]}}</p>
+				    	</div>
+				    	<a href="" class="btn btn-default btn-xs pull-right add-track"><span class="glyphicon glyphicon-plus"></span></a>
+				    	<div class="clearfix"></div>
+			    	</li>
+			    </ul>
+			</div>
+			<div ng-if="artists" class="artists">
+				<h2><span class="glyphicon glyphicon-user"></span> Artists</h2>
+		    	<ul>
+			    	<li ng-repeat="artist in artists">{{artist.name[0]}}</li>
+			    </ul>
+			</div>
+			<div ng-if="albums" class="albums">
+				<h2><span class="glyphicon glyphicon-record"></span> Albums</h2>
+		    	<ul>
+			    	<li ng-repeat="album in albums">{{album.name[0]}} - {{album.artist-name[0]}}</li>
+			    </ul>
+			</div>
 		</div>
 	</div>
 </div>
 
-<div ng-include="'partials/footer'"></div>
+<div ng-include="'partials/footer-menu'"></div>
+<div class="overlay"></div>

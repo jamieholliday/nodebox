@@ -2,10 +2,98 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 
 @import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 
+body {
+	background: #f0f0f0;
+}
+
+//vars
+$bdr: 1px solid #ccc;
 
 //nav
+
 .nav-search {
-    margin-right: 5px;
+    margin-right: 15px;
+}
+
+//main container
+.main-container {
+	padding-top: 70px;
+}
+
+//search
+.tracks,
+.albums,
+.artists {
+	margin-bottom: 10px;
+}
+
+.search-box {
+	margin-bottom: 10px;
+}
+
+.search ul {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+}
+
+.search h2 {
+  font-size: 0.7em;
+  text-transform: uppercase;
+  padding: 5px;
+  margin: 0;
+  color: #666;
+}
+
+.search li {
+  list-style: none;
+  border: $bdr;
+  padding: 5px;
+  border-bottom: none;
+  position: relative;
+
+	.add-track {
+		position: absolute;
+		top: 50%;
+		right: 5px;
+		margin-top: -11px;
+
+		&.btn-xs {
+			border-radius: 12px;
+			width: 23px;
+			height: 23px;
+
+		}
+	}
+}
+
+.search li:last-child {
+  border-bottom: $bdr;
+}
+
+.track-container {
+	padding-right: 40px;
+
+	h3, p{
+		font-size: 1em;
+		margin: 0;
+	}
+}
+
+.footer-menu {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background: #333;
+	color: #fff;
+	padding-top: 10px;
+	padding-bottom: 5px;
+
+	.btn {
+		width: 100%;
+		margin-bottom: 5px;
+	}
 }
 
 /* Responsive: Portrait tablets and up */

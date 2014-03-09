@@ -1,8 +1,7 @@
 <div ng-controller="NavbarCtrl">
-  <nav class="navbar navbar-default navbar-static-top">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
   	<div class="container">
-		<span class="text-muted pull-left navbar-brand glyphicon glyphicon-music"></span>
-		<div class="pull-right"><a ng-href="{{item.link}}" ng-repeat="item in menu" class="btn btn-default navbar-btn nav-{{item.title}}"><span class="glyphicon {{item.icon}}"></span></a></div>
+		<div class="pull-right"><a ng-href="{{item.link}}" ng-repeat="item in menu" class="btn btn-warning navbar-btn nav-{{item.title}}"><span class="glyphicon {{item.icon}}"></span></a></div>
   	</div>
   </nav>
 </div>

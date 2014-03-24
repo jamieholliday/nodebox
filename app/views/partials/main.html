@@ -2,7 +2,7 @@
 <div class="container main-container">  
 	<div class="row playlist">
 		<div class="col-md-12">
-			
+
 			<div ng-if="tracks" class="tracks">
 				<h2><span class="glyphicon glyphicon-music"></span> Tracks</h2>
 		    	<ul>
@@ -16,7 +16,11 @@
 			    </ul>
 			</div>
 			<div ng-if="noTracks" class="no-tracks">
-				No tracks added yet
+				<h3>No tracks added yet</h3>
+				<a ng-href="search" class="search-btn">
+					<span class="glyphicon glyphicon-music"></span>
+					<p>Search for a song</p>
+				</a>
 			</div>
 		</div>
 	</div>

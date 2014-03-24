@@ -2,10 +2,24 @@
 <div class="container main-container">  
 	<div class="row playlist">
 		<div class="col-md-12">
-			<h1>Main</h1>
-
+			
+			<div ng-if="tracks" class="tracks">
+				<h2><span class="glyphicon glyphicon-music"></span> Tracks</h2>
+		    	<ul>
+			    	<li ng-repeat="track in tracks">
+				    	<div class="track-container pull-left">
+					    	<h3>{{track.title[0]}} - {{track.artist[0]}}</h3>
+					    	<p>{{track.album[0]}}</p>
+				    	</div>
+				    	<div class="clearfix"></div>
+			    	</li>
+			    </ul>
+			</div>
+			<div ng-if="noTracks" class="no-tracks">
+				No tracks added yet
+			</div>
 		</div>
 	</div>
 </div>
 
-<div ng-include="'partials/footer-menu'"></div>
+<div ng-include="'partials/footer-search'"></div>

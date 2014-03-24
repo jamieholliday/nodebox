@@ -16,7 +16,7 @@
 					    	<h3>{{track.title[0]}} - {{track.artist[0]}}</h3>
 					    	<p>{{track.album[0]}}</p>
 				    	</div>
-				    	<a href="" class="btn btn-default btn-xs pull-right add-track"><span class="glyphicon glyphicon-plus"></span></a>
+				    	<a href="" class="btn btn-default btn-xs pull-right add-track" ng-click="addButtonClicked(track)"><span class="glyphicon glyphicon-plus"></span></a>
 				    	<div class="clearfix"></div>
 			    	</li>
 			    </ul>
@@ -30,12 +30,11 @@
 			<div ng-if="albums" class="albums">
 				<h2><span class="glyphicon glyphicon-record"></span> Albums</h2>
 		    	<ul>
-			    	<li ng-repeat="album in albums">{{album.name[0]}} - {{album.artist-name[0]}}</li>
+			    	<li ng-repeat="album in albums">{{album.name[0]}} - {{album['artist-name'][0]}}</li>
 			    </ul>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div ng-include="'partials/footer-menu'"></div>
-<div class="overlay"></div>
+<div ng-include="'partials/footer-search'"></div>

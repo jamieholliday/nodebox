@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('nodeboxApp')
-	.controller('SearchCtrl', function ($scope, $http) {
+	.controller('SearchCtrl', function ($scope, $http, Queue) {
+		$scope.showSearchFooter = false;
 		$scope.tracks = [
 			{
 				title: ['title1'],
@@ -54,15 +55,34 @@ angular.module('nodeboxApp')
 				$scope.tracks = data.result.tracks[0].track;
 				$scope.artists = data.result.artists[0].artist;
 				$scope.albums = data.result.albums[0].album;
-				// $scope.albums = data.result.tracks[0].track;
 
 				$scope.result = data;
-				console.log(data.result.tracks[0].track);
+				console.log(data.result.albums[0].album);
 			})
 			.error(function(data, status) {
 				$scope.data = data || 'Sorry couldn\'t get \'owt';
 				$scope.status = status;
 			});
+		};
+
+		$scope.addButtonClicked = function(track) {
+			this.toogleSearchFooter();
+			$scope.selectedtrack = track;
+		};
+
+		$scope.addToQueueClicked = function() {
+			if(this.selectedtrack) {
+				Queue.add(this.selectedtrack);
+			}
+			this.toogleSearchFooter();
+		};
+
+		$scope.cancelSearchClicked = function() {
+			this.toogleSearchFooter();
+		};
+
+		$scope.toogleSearchFooter = function() {
+			$scope.showSearchFooter = !$scope.showSearchFooter;
 		};
 });
 

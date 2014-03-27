@@ -53,21 +53,28 @@ $bdr: 1px solid #ccc;
 	margin-bottom: 10px;
 }
 
-.search ul {
-  margin: 0;
-  padding: 0;
-  background: #fff;
-}
+.search, 
+.playlist {
+	ul {
+	  margin: 0;
+	  padding: 0;
+	  background: #fff;
+	}	
+} 
 
-.search h2 {
-  font-size: 0.7em;
-  text-transform: uppercase;
-  padding: 5px;
-  margin: 0;
-  color: #666;
-}
+.search,
+.playlist {
+	h2 {
+	  font-size: 0.7em;
+	  text-transform: uppercase;
+	  padding: 5px;
+	  margin: 0;
+	  color: #666;
+	}
+} 
 
-.search li {
+.search li, 
+.playlist li {
   list-style: none;
   border: $bdr;
   padding: 5px;
@@ -89,16 +96,36 @@ $bdr: 1px solid #ccc;
 	}
 }
 
-.search li:last-child {
+.search li:last-child,
+.playlist li:last-child {
   border-bottom: $bdr;
 }
 
-.track-container {
+.track-container,
+.playing-container {
 	padding-right: 40px;
 
 	h3, p{
 		font-size: 1em;
 		margin: 0;
+	}
+}
+
+.now-playing {
+	background: #e2e2e2;
+	border: 1px solid #d5d5d5;
+	padding: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+}
+
+.playing-container {
+
+	h2 {
+		padding: 0;
+		margin-bottom: 5px;
 	}
 }
 

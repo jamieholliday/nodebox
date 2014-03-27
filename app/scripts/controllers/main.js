@@ -8,4 +8,6 @@ angular.module('nodeboxApp')
 	if($scope.tracks.length < 1) {
 		$scope.noTracks = true;
 	}
+
+	$scope.nowPlaying = Queue.nowPlaying();
 });

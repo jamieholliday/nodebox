@@ -3,6 +3,7 @@
 angular.module('nodeboxApp')
 	.controller('SearchCtrl', function ($scope, $http, Queue) {
 		$scope.showSearchFooter = false;
+		$scope.showLoader = false;
 		
 		$scope.setSearchData = function() {
 			//check if there is data from previous search
@@ -13,18 +14,27 @@ angular.module('nodeboxApp')
 			}
 		};
 
-		$scope.setSearchData();
+		$scope.clearSearchData = function() {
+			$scope.tracks = [];
+			$scope.artists = [];
+			$scope.albums = [];
+			Queue.clear();
+		};
 
 		$scope.search = function() {
+			$scope.showLoader = true;
+			$scope.clearSearchData();
 			$http.post('api/searchAll', {'searchTerm': $scope.searchTerm})
 			.success(function(data, status) {
 				Queue.searchResults = data;
 				$scope.status = status;
 				$scope.setSearchData();
+				$scope.showLoader = false;
 			})
 			.error(function(data, status) {
 				$scope.data = data || 'Sorry couldn\'t get \'owt';
 				$scope.status = status;
+				$scope.showLoader = false;
 			});
 		};
 
@@ -47,5 +57,7 @@ angular.module('nodeboxApp')
 		$scope.toogleSearchFooter = function() {
 			$scope.showSearchFooter = !$scope.showSearchFooter;
 		};
+
+		$scope.setSearchData();
 });
 

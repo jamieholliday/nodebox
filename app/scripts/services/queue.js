@@ -4,7 +4,7 @@ angular.module('nodeboxApp')
 	.factory('Queue', function() {
 		return {
 			queue: [],
-			playing: {},
+			playing: [],
 			searchResults: {},
 
 			add: function(song) {
@@ -22,6 +22,10 @@ angular.module('nodeboxApp')
 
 			nowPlaying: function() {
 				return this.playing;
+			},
+
+			clear: function() {
+				this.searchResults = {};
 			}
 		};
 	});

@@ -4,7 +4,7 @@
 		<div class="col-md-12">
 
 			<div ng-if="tracks" class="tracks">
-				<div class="now-playing">
+				<div class="now-playing" ng-if="nowPlaying">
 					<div class="playing-container">
 						<h2>Now Playing</h2>
 				    	<h3>{{nowPlaying.title[0]}} - {{nowPlaying.artist[0]}}</h3>

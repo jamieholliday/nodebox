@@ -8,11 +8,24 @@ body {
 
 //vars
 $bdr: 1px solid #ccc;
+$orange: #F0AD4E;
 
 //nav
 
 .nav-search {
     margin-right: 15px;
+}
+
+.added {
+	color: #fff;
+	padding-top: 10px;
+	margin-right: 20px;
+	font-size: 0.8em;
+	max-height: 50px;
+	overflow: hidden;
+	span {
+		color: $orange;
+	}
 }
 
 //main container
@@ -151,17 +164,17 @@ $bdr: 1px solid #ccc;
 
 	ul {
 		margin: 0 auto;
-		width: 40px;
+		width: 45px;
 		height: 50px;
 		background: none;
 	}
 
 	li{
-	  background-color:#F0AD4E;
-	  width:10px;
-	  height:10px;
-	  float:left;
-	  margin-right:5px;
+	  background-color: $orange;
+	  width: 10px;
+	  height: 10px;
+	  float: left;
+	  margin-right: 5px;
 	  border: none;
 	}
 

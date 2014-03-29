@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('nodeboxApp')
-	.factory('Queue', function() {
+	.factory('Queue', function($rootScope) {
 		return {
 			queue: [],
 			playing: [],
@@ -9,7 +9,7 @@ angular.module('nodeboxApp')
 
 			add: function(song) {
 				this.queue.push(song);
-				this.list();
+				$rootScope.$broadcast('addedToQueue', song);
 			},
 
 			get: function() {

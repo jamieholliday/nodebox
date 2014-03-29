@@ -1,6 +1,9 @@
 <div ng-controller="NavbarCtrl">
   <nav class="navbar navbar-inverse navbar-fixed-top">
   	<div class="container">
+  		<div class="pull-left added" ng-if="added">
+  			<p><span>Added to queue:</span><br>{{added}}</p>
+  		</div>
 		<div class="pull-right"><a ng-href="{{item.link}}" ng-repeat="item in menu" class="btn btn-warning navbar-btn nav-{{item.title}}"><span class="glyphicon {{item.icon}}"></span></a></div>
   	</div>
   </nav>

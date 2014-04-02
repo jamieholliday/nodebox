@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('nodeboxApp')
 	.factory('Queue', function($rootScope) {
 		return {

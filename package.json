@@ -9,7 +9,8 @@
     "spotify-web": "~1.1.0",
     "lame": "~1.0.3",
     "speaker": "0.0.10",
-    "xml2js": "~0.4.1"
+    "xml2js": "~0.4.1",
+    "socket.io": "~0.9"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -65,5 +66,22 @@
   },
   "scripts": {
     "test": "grunt test"
+  },
+  "jshintConfig": {
+    "node": true,
+    "esnext": true,
+    "bitwise": true,
+    "eqeqeq": true,
+    "immed": true,
+    "latedef": true,
+    "newcap": true,
+    "noarg": true,
+    "regexp": true,
+    "undef": true,
+    "smarttabs": true,
+    "globals": {
+        "angular": false,
+        "io": false
+    }
   }
 }

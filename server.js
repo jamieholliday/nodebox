@@ -2,7 +2,8 @@
 
 var express = require('express'),
     path = require('path'),
-    fs = require('fs');
+    fs = require('fs'),
+    http = require('http');
     //mongoose = require('mongoose');
 
 /**
@@ -38,9 +39,12 @@ require('./lib/config/express')(app);
 require('./lib/routes')(app);
 
 // Start server
-app.listen(config.port, function () {
+var server = app.listen(config.port, function () {
   console.log('Express server listening on port %d in %s mode', config.port, app.get('env'));
 });
+
+var io = require('./lib/io')(server);
+
 
 // Expose app
 exports = module.exports = app;

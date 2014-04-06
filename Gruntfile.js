@@ -107,7 +107,8 @@ module.exports = function (grunt) {
         src: [ 'lib/{,*/}*.js']
       },
       all: [
-        '<%= yeoman.app %>/scripts/{,*/}*.js'
+        '<%= yeoman.app %>/scripts/{,*/}*.js',
+      '!<%= yeoman.app %>/scripts/vendor/{,*/}*.js'
       ],
       test: {
         options: {

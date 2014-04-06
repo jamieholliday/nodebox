@@ -10,6 +10,8 @@ var express = require('express'),
  * Main application file
  */
 
+ GLOBAL.queue = []; //for testing
+
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 

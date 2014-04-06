@@ -1,16 +1,17 @@
 'use strict';
 
 angular.module('nodeboxApp')
-	.controller('SearchCtrl', function ($scope, $http, Queue) {
+	.controller('SearchCtrl', function ($scope, Queue, Api) {
 		$scope.showSearchFooter = false;
 		$scope.showLoader = false;
-		
+
 		$scope.setSearchData = function() {
 			//check if there is data from previous search
-			if(Queue.searchResults.result) {
-				$scope.tracks = Queue.searchResults.result.tracks[0].track;
-				$scope.artists = Queue.searchResults.result.artists[0].artist;
-				$scope.albums = Queue.searchResults.result.albums[0].album;
+			var searchResults = Queue.getSearchResults();
+			if(searchResults) {
+				$scope.tracks = searchResults.tracks[0].track;
+				$scope.artists = searchResults.artists[0].artist;
+				$scope.albums = searchResults.albums[0].album;
 			}
 		};
 
@@ -22,30 +23,27 @@ angular.module('nodeboxApp')
 		};
 
 		$scope.search = function() {
-			$scope.showLoader = true;
-			$scope.clearSearchData();
-			$http.post('api/searchAll', {'searchTerm': $scope.searchTerm})
-			.success(function(data, status) {
-				Queue.searchResults = data;
-				$scope.status = status;
-				$scope.setSearchData();
-				$scope.showLoader = false;
-			})
-			.error(function(data, status) {
-				$scope.data = data || 'Sorry couldn\'t get \'owt';
-				$scope.status = status;
-				$scope.showLoader = false;
-			});
+			if($scope.searchTerm) {
+				$scope.showLoader = true;
+				$scope.clearSearchData();
+				Api.search($scope.searchTerm).then(function(data) {
+					Queue.setSearchResults(data);
+					$scope.setSearchData();
+					$scope.showLoader = false;
+				});
+			}
 		};
 
 		$scope.addButtonClicked = function(track) {
 			this.toogleSearchFooter();
-			$scope.selectedtrack = track;
+			$scope.selectedTrack = track;
 		};
 
 		$scope.addToQueueClicked = function() {
-			if(this.selectedtrack) {
-				Queue.add(this.selectedtrack);
+			console.log('addto queue');
+			if($scope.selectedTrack) {
+				console.log($scope.selectedTrack);
+				Queue.add($scope.selectedTrack);
 			}
 			this.toogleSearchFooter();
 		};
@@ -60,4 +58,3 @@ angular.module('nodeboxApp')
 
 		$scope.setSearchData();
 });
-

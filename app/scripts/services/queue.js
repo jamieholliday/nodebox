@@ -1,29 +1,56 @@
+//this service is shared queue logic between controllers
+'use strict';
 angular.module('nodeboxApp')
-	.factory('Queue', function($rootScope) {
-		return {
-			queue: [],
-			playing: [],
-			searchResults: {},
+	.factory('Queue', function($rootScope, Socket) {
 
-			add: function(song) {
-				this.queue.push(song);
-				$rootScope.$broadcast('addedToQueue', song);
+		return {
+			_queue: [],
+			_playing : [],
+			_searchResults: {},
+
+			add: function(track) {
+				$rootScope.$broadcast('addedToQueue', track);
+				Socket.emit('client:add', track);
+			},
+
+			update: function(currentQueue) {
+				this._queue = currentQueue;
 			},
 
 			get: function() {
-				return this.queue;
+				return this._queue;
 			},
 
 			list: function() {
-				console.log(this.queue);
+				console.log(this._queue);
 			},
 
-			nowPlaying: function() {
-				return this.playing;
+			getNowPlaying: function() {
+				return this._playing;
+			},
+
+			setNowPlaying: function(song) {
+				this._playing = song;
+			},
+
+			setQueue: function(queue) {
+				this._queue = queue;
+			},
+
+			getQueue: function() {
+				return this._queue;
 			},
 
 			clear: function() {
-				this.searchResults = {};
+				this._searchResults = {};
+			},
+
+			setSearchResults: function(data) {
+				this._searchResults = data;
+			},
+
+			getSearchResults: function() {
+				return this._searchResults.result;
 			}
 		};
 	});

@@ -6,14 +6,12 @@ angular.module('nodeboxApp')
 	Socket.on('init', function(data) {
 		$scope.name = data.name;
 		$scope.users = data.users;
-		console.log(data);
 	});
 
 	Socket.on('server:updateQueue', function(currentQueue) {
-		console.log(currentQueue);
 		Queue.update(currentQueue);
 		$scope.tracks = Queue.get();
-		$scope.$apply();
+		$scope.$apply(); 
 	});
 
 	Socket.on('server:NowPlaying', function(nowPlaying) {

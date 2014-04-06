@@ -1,13 +1,15 @@
 <div ng-include="'partials/navbar'"></div>
-<div class="container main-container">  
+<div class="container main-container">
 	<div class="row search">
 		<div class="col-md-12">
-			<div class="input-group search-box">
-				<input type="text" ng-model="searchTerm" placeholder="Search for song or artist" class="form-control">
-				<span class="input-group-btn">
-					<button class="btn btn-warning" ng-click="search()">Go</button>
-				</span>
-			</div>
+			<form id="search" ng-submit="search()">
+				<div class="input-group search-box">
+						<input type="text" ng-model="searchTerm" placeholder="Search for song or artist" class="form-control">
+						<span class="input-group-btn">
+							<button class="btn btn-warning">Go</button>
+						</span>
+				</div>
+			</form>
 			<jh-loader ng-show="showLoader"></jh-loader>
 			<div ng-if="tracks" class="tracks">
 				<h2><span class="glyphicon glyphicon-music"></span> Tracks</h2>

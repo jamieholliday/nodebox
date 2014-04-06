@@ -1,5 +1,5 @@
 <div ng-include="'partials/navbar'"></div>
-<div class="container main-container">  
+<div class="container main-container">
 	<div class="row playlist">
 		<div class="col-md-12">
 
@@ -13,7 +13,7 @@
 				</div>
 				<h2><span class="glyphicon glyphicon-music"></span> Queued for playback</h2>
 		    	<ul>
-			    	<li ng-repeat="track in tracks | limitTo:10 track by $index">
+			    	<li ng-repeat="track in tracks track by $index">
 				    	<div class="track-container">
 					    	<h3>{{track.title[0]}} - {{track.artist[0]}}</h3>
 					    	<p>{{track.album[0]}}</p>

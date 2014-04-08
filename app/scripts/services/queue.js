@@ -15,6 +15,7 @@ angular.module('nodeboxApp')
 
 			update: function(currentQueue) {
 				this._queue = currentQueue;
+				return currentQueue;
 			},
 
 			get: function() {

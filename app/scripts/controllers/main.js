@@ -9,9 +9,8 @@ angular.module('nodeboxApp')
 	});
 
 	Socket.on('server:updateQueue', function(currentQueue) {
-		Queue.update(currentQueue);
-		$scope.tracks = Queue.get();
-		$scope.$apply(); 
+		$scope.tracks = Queue.update(currentQueue);
+		//$scope.$apply();
 	});
 
 	Socket.on('server:NowPlaying', function(nowPlaying) {

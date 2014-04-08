@@ -40,9 +40,7 @@ angular.module('nodeboxApp')
 		};
 
 		$scope.addToQueueClicked = function() {
-			console.log('addto queue');
 			if($scope.selectedTrack) {
-				console.log($scope.selectedTrack);
 				Queue.add($scope.selectedTrack);
 			}
 			this.toogleSearchFooter();

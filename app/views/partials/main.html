@@ -2,15 +2,14 @@
 <div class="container main-container">
 	<div class="row playlist">
 		<div class="col-md-12">
-
+			<div class="now-playing" ng-if="nowPlaying">
+				<div class="playing-container">
+					<h2>Now Playing</h2>
+			    	<h3>{{nowPlaying.name}} - {{nowPlaying.artist[0].name}}</h3>
+			    	<p>{{nowPlaying.name}}</p>
+		    	</div>
+			</div>
 			<div ng-if="tracks" class="tracks">
-				<div class="now-playing" ng-if="nowPlaying">
-					<div class="playing-container">
-						<h2>Now Playing</h2>
-				    	<h3>{{nowPlaying.title[0]}} - {{nowPlaying.artist[0]}}</h3>
-				    	<p>{{nowPlaying.album[0]}}</p>
-			    	</div>
-				</div>
 				<h2><span class="glyphicon glyphicon-music"></span> Queued for playback</h2>
 		    	<ul>
 			    	<li ng-repeat="track in tracks track by $index">
@@ -23,7 +22,7 @@
 			    </ul>
 			</div>
 			<div ng-if="noTracks" class="no-tracks">
-				<h3>No tracks added yet</h3>
+				<h3>No tracks in the queue</h3>
 				<a ng-href="search" class="search-btn">
 					<span class="glyphicon glyphicon-music"></span>
 					<p>Search for a song</p>

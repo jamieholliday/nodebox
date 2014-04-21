@@ -15,7 +15,7 @@ angular.module('nodeboxApp')
 
 			update: function(currentQueue) {
 				this._queue = currentQueue;
-				$rootScope.$broadcast('updatedQueue', currentQueue);
+				$rootScope.$broadcast('updatedQueue');
 			},
 
 			get: function() {
@@ -32,6 +32,7 @@ angular.module('nodeboxApp')
 
 			setNowPlaying: function(song) {
 				this._playing = song;
+				$rootScope.$broadcast('updatedPlaying');
 			},
 
 			setQueue: function(queue) {
@@ -56,10 +57,12 @@ angular.module('nodeboxApp')
 		};
 
 		Socket.on('server:updateQueue', function(currentQueue) {
+			console.log('currentQueue:', currentQueue);
 			queue.update(currentQueue);
 		});
 
-		Socket.on('server:NowPlaying', function(nowPlaying) {
+		Socket.on('server:nowPlaying', function(nowPlaying) {
+			console.log('setNowPlaying:', nowPlaying);
 			queue.setNowPlaying(nowPlaying);
 		});
 

@@ -7,16 +7,19 @@ angular.module('nodeboxApp')
 		$scope.tracks = Queue.get();
 		if($scope.tracks.length < 1) {
 			$scope.noTracks = true;
+		} else {
+			$scope.noTracks = false;
 		}
+	};
+
+	var setNowPlaying = function() {
 		$scope.nowPlaying = Queue.getNowPlaying();
 	};
 
-	$rootScope.$on('updatedQueue', function() {
-		setQueue();
-	});
-
+	//Setup
 	$scope.tracks = Queue.get();
-	$scope.noTracks = false;
+	$scope.nowPlaying = Queue.getNowPlaying();
+	$scope.noTracks = true;
 
 	//get the current queue if there is one
 	if(!$scope.tracks.length) {
@@ -26,5 +29,9 @@ angular.module('nodeboxApp')
 	} else {
 		setQueue();
 	}
+
+	//Root Events
+	$rootScope.$on('updatedQueue', setQueue);
+	$rootScope.$on('updatedPlaying', setNowPlaying);
 
 });

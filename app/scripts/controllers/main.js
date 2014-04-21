@@ -1,22 +1,7 @@
 'use strict';
 
 angular.module('nodeboxApp')
-	.controller('MainCtrl', function ($scope, Queue, Api, Socket) {
-
-	Socket.on('init', function(data) {
-		$scope.name = data.name;
-		$scope.users = data.users;
-	});
-
-	Socket.on('server:updateQueue', function(currentQueue) {
-		$scope.tracks = Queue.update(currentQueue);
-		//$scope.$apply();
-	});
-
-	Socket.on('server:NowPlaying', function(nowPlaying) {
-		console.log(nowPlaying);
-		Queue.setNowPlaying(nowPlaying);
-	});
+	.controller('MainCtrl', function ($scope, Queue, Api, Socket, $rootScope) {
 
 	var setQueue = function() {
 		$scope.tracks = Queue.get();
@@ -26,6 +11,10 @@ angular.module('nodeboxApp')
 		$scope.nowPlaying = Queue.getNowPlaying();
 	};
 
+	$rootScope.$on('updatedQueue', function() {
+		setQueue();
+	});
+
 	$scope.tracks = Queue.get();
 	$scope.noTracks = false;
 
@@ -33,16 +22,9 @@ angular.module('nodeboxApp')
 	if(!$scope.tracks.length) {
 		Api.getQueue().then(function(currentQueue) {
 			Queue.update(currentQueue);
-			console.log(currentQueue);
-			setQueue();
 		});
 	} else {
 		setQueue();
 	}
-
-	$scope.$on('$destroy', function (event) {
-			Socket.removeAllListeners('server:updateQueue');
-			Socket.removeAllListeners('server:NowPlaying');
-	});
 
 });

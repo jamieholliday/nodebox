@@ -3,7 +3,7 @@
 angular.module('nodeboxApp')
 	.factory('Queue', function($rootScope, Socket) {
 
-		return {
+		var queue = {
 			_queue: [],
 			_playing : [],
 			_searchResults: {},
@@ -15,7 +15,7 @@ angular.module('nodeboxApp')
 
 			update: function(currentQueue) {
 				this._queue = currentQueue;
-				return currentQueue;
+				$rootScope.$broadcast('updatedQueue', currentQueue);
 			},
 
 			get: function() {
@@ -54,4 +54,14 @@ angular.module('nodeboxApp')
 				return this._searchResults.result;
 			}
 		};
+
+		Socket.on('server:updateQueue', function(currentQueue) {
+			queue.update(currentQueue);
+		});
+
+		Socket.on('server:NowPlaying', function(nowPlaying) {
+			queue.setNowPlaying(nowPlaying);
+		});
+
+		return queue;
 	});
